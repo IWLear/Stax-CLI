@@ -1,0 +1,62 @@
+{
+  "name": "{{packageName}}",
+  "version": "0.1.0",
+  "private": true,
+{{#if isReact}}
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint": "eslint \"src/**/*.{ts,tsx}\""
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.6.3",
+    "vite": "^6.4.3"
+  }
+{{else}}
+  "type": "commonjs",
+  "scripts": {
+    "dev": "nodemon --watch src --ext ts,json --exec ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.ts\""{{#if usePrisma}},
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"{{/if}}
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.1",
+    "zod": "^3.23.8"{{#if usePrisma}},
+    "@prisma/client": "^5.22.0"{{/if}}
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.1",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "eslint": "^8.57.1",
+    "nodemon": "^3.1.7"{{#if usePrisma}},
+    "prisma": "^5.22.0"{{/if}},
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.3"
+  }
+{{/if}}
+}

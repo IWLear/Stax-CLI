@@ -1,0 +1,46 @@
+{
+  "name": "stax-cli",
+  "version": "0.1.0",
+  "description": "Interactive TypeScript monorepo scaffolder",
+  "license": "MIT",
+  "author": "OpenAI",
+  "type": "commonjs",
+  "bin": {
+    "stax": "dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src/templates"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build && npm run test"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^12.1.0",
+    "fs-extra": "^11.0.1",
+    "handlebars": "^4.0.0",
+    "inquirer": "^8.2.6",
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.1",
+    "@types/inquirer": "^9.0.0",
+    "@types/node": "^22.10.1",
+    "tsup": "^8.1.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.3",
+    "vitest": "^4.1.9"
+  },
+  "overrides": {
+    "esbuild": "^0.28.1"
+  }
+}
